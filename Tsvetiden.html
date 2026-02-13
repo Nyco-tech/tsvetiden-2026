@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Iudex's Decree</title>
+    <style>
+        :root {
+            --hydro-blue: #00d2ff;
+            --fontaine-gold: #e2c07d;
+            --deep-navy: #000c16;
+        }
+
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Garamond', serif;
+            background: var(--deep-navy);
+            color: white;
+            overflow: hidden;
+            touch-action: manipulation; /* Fixes mobile zoom lag */
+        }
+
+        /* CENTRAL BIG TEXT */
+        .main-headline {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem; /* Scaled down for mobile first */
+            font-weight: bold;
+            text-align: center;
+            line-height: 0.9;
+            z-index: 15;
+            color: white;
+            text-transform: uppercase;
+            pointer-events: none;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 3px 3px 0px var(--hydro-blue);
+            width: 90%;
+        }
+
+        /* BIG NEUVILLETTE */
+        .neuvi-render {
+            position: fixed;
+            right: -10%;
+            bottom: -5px;
+            height: 70vh; /* Shorter on mobile so he doesn't cover everything */
+            z-index: 10;
+            filter: drop-shadow(-10px 0 20px rgba(0,210,255,0.4));
+            pointer-events: none;
+        }
+
+        /* CHAOTIC IMAGE SLOTS */
+        .meme {
+            position: absolute;
+            border: 4px solid white;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+            background: #eee;
+            z-index: 5;
+        }
+
+        /* Mobile-ish positions */
+        .m1 { top: 5%;  left: 5%;  width: 120px; transform: rotate(-8deg); }
+        .m2 { top: 15%; left: 60%; width: 100px; transform: rotate(12deg); }
+        .m3 { bottom: 25%; left: 10%; width: 130px; transform: rotate(-5deg); }
+        .m4 { top: 50%; left: 5%;  width: 110px; transform: rotate(-15deg); }
+
+        /* THE VERDICT BOX */
+        .verdict-box {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 30;
+            color: black;
+            text-align: center;
+            width: 80%;
+            border: 3px solid var(--hydro-blue);
+        }
+
+        .btn {
+            background: var(--deep-navy);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        #bday-result {
+            display: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+        }
+
+        /* DESKTOP ADJUSTMENTS (Makes it look good on big screens too) */
+        @media (min-width: 768px) {
+            .main-headline { font-size: 5.5rem; left: 35%; width: auto; }
+            .neuvi-render { height: 100vh; right: -5%; }
+            .m1 { width: 280px; } .m2 { width: 200px; } .m3 { width: 250px; } .m4 { width: 220px; }
+            .verdict-box { width: 400px; left: 35%; bottom: 10%; }
+            #bday-result { font-size: 2.5rem; }
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 6s infinite linear;
+            z-index: 1;
+        }
+        @keyframes rise { to { transform: translateY(-120vh); } }
+    </style>
+</head>
+<body>
+
+    <div class="main-headline">
+        TSVETIIII! <br> DA IMASH MNOGO NEUVILLETE PREZ 2026
+    </div>
+
+    <img src="neuvi-img.png" class="neuvi-render">
+
+    <img src="cat_tongue.gif" class="meme m1">
+    <img src="kinich.jpg" class="meme m2">
+    <img src="neuvi_sticker.jpg" class="meme m3">
+    <img src="gojo_crazy.jpeg" class="meme m4">
+
+    <div class="verdict-box">
+        <div id="ui-start">
+            <button class="btn" onclick="reveal()">cukni za neuvillete (i rojdeniq den)</button>
+        </div>
+        <div id="bday-result">
+            🎊 CHESTTIT ROJDEN DEN! 🎊
+            <div style="font-size: 0.8rem; font-weight: normal; margin-top: 5px;">na paterici hehe :3</div>
+        </div>
+    </div>
+
+    <script>
+        for (let i = 0; i < 15; i++) {
+            let b = document.createElement('div');
+            b.className = 'bubble';
+            let s = Math.random() * 40 + 10 + 'px';
+            b.style.width = s; b.style.height = s;
+            b.style.left = Math.random() * 100 + 'vw';
+            b.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            document.body.appendChild(b);
+        }
+        function reveal() {
+            document.getElementById('ui-start').style.display = 'none';
+            document.getElementById('bday-result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
